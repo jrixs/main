@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Video</title>
+    <style>
+        *{margin:0;padding:0;font-family:'arial';font-size:16px;}
+        html,body{background-color:#eee;}
+        .menu_zone{position: fixed;border-top: 2px solid #ddd;border-left: 2px solid #ddd;padding:10px;border-right: 3px solid #ddd;border-bottom: 3px solid #ddd;text-align:left;background-color:#eee;font-size:12px;}
+        .work_zone{margin:100px auto;width:400px;border-top: 1px solid #ddd;border-left: 1px solid #ddd;padding:50px;border-right: 2px solid #ddd;border-bottom: 2px solid #ddd;text-align:center;background-color:white;}
+        .work_zone>*{color:#f49237;}
+        .work_zone>h1{text-align:center;text-transform:uppercase;margin-bottom:50px;font-size:24px;}
+        .work_zone input[type=submit]{padding:12px;background-color:#f49237;color:white;border:none;border-radius:5px;cursor:pointer;width: 95%;}
+        .work_zone input[type=text]{margin: 0;padding: 0;font-family: 'arial';font-size: 16px;cursor: pointer;position: relative;border: 1px solid #f49237;color: #999;background-color: white;border-radius: 5px;padding: 10px;display: inline-block;margin-bottom: 30px;width: 90%;}
+        .work_zone input[type=password]{margin: 0;padding: 0;font-family: 'arial';font-size: 16px;cursor: pointer;position: relative;border: 1px solid #f49237;color: #999;background-color: white;border-radius: 5px;padding: 10px;display: inline-block;margin-bottom: 30px;width: 90%;}
+        .uploader{cursor:pointer;position:relative;border:1px solid #f49237;color:#999;background-color:white;border-radius:5px;padding:10px;display:inline-block;margin-bottom:30px;width:90%;}
+        .uploader:hover{background-color:#f49237;color:white;}
+        #fc{cursor:pointer;}
+        .uploader>input[type=file]{position:absolute;left:0;top:0;bottom:0;right:0;opacity:0;cursor:pointer;display:block;}
+        .uploader_stat{text-align:left;}
+        .but{display:inline-block;padding:4px;font-size:12px;background-color:#ffbf00;border:3px solid #ffbf00;cursor:pointer;color:black;border-radius:5px;text-decoration:none;}
+        .but:hover{background-color:#ffe000;border:3px solid #ffe000;}
+        .butred:hover{background-color:#ff0000;border:3px solid #ff0000;color:#ffe000;}
+        .error{margin:30px auto;width:400px;font-size:22px;border-radius:10px;padding:30px;color:#f00;text-align:center;font-weight:bold;}
+        .cr{font-size:12px;color:#888;text-align:center;}
+
+    </style>
+</head>
+<body>
+    <div class='work_zone'> 
+        <h1>Вход</h1>
+        <form action="/login" method="POST">
+          <input type="text" name="login" placeholder="логин">
+          <input type="password" name="password" placeholder="пароль">
+          <input type="submit" value="Войти">
+        </form>
+    </div>
+    <div class='error'>{{ error }}</div>
+    <div class='cr'>©2019</div>
+</body>
+</html>

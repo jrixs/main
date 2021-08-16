@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>HappyIT</title>
+	<link rel="icon" href="https://yt3.ggpht.com/ytc/AAUvwng8blqjf-bH0fGxKcdOtYjkOiPPmKXpqowZ2evV5A=s900-c-k-c0x00ffffff-no-rj">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<style>
+	body{font-size: 20px;}
+	.my_batton {font-size: 3rem;}
+	@media screen and (max-width: 1024px) {body{font-size: 40px;}}
+	</style>
+    <script>
+    function show(){
+      $.ajax({
+        url: '/test',
+        success: function(data) {
+          $('.results').html(data);
+          }
+      });
+    }
+    $(document).ready(function(){
+      show();
+      setInterval('show()',60000);
+    });
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler my_batton" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand" href="#">HappyIT</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="\home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="\connect">connect</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="\setings">setings</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="ml-1 mt-1">
+  <div class="row">
+    <div class="col-xl-2 col-lg-2 col-xm-12 mt-5">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link {{ setingsConnect }}" id="v-pills-Connect-tab" data-toggle="pill" href="#v-pills-Connect" role="tab" aria-controls="v-pills-Connect" aria-selected="true">Connect</a>
+          <a class="nav-link {{ setingsDatabase }}" id="v-pills-Database-tab" data-toggle="pill" href="#v-pills-Database" role="tab" aria-controls="v-pills-Database" aria-selected="false">Database</a>
+          <a class="nav-link {{ setingsLDAP }}" id="v-pills-LDAP-tab" data-toggle="pill" href="#v-pills-LDAP" role="tab" aria-controls="v-pills-LDAP" aria-selected="false">LDAP</a>
+        </div>
+      </div>
+    <div class="col-xl-10 col-lg-12 col-xm-10 mt-5">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade {{ vpillsConnect }}" id="v-pills-Connect" role="tabpanel" aria-labelledby="v-pills-Connect-tab">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" id="Connect-tab" data-toggle="tab" href="#Connect" role="tab" aria-controls="Connect" aria-selected="false">Group</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="Database-tab" data-toggle="tab" href="#Database" role="tab" aria-controls="Database" aria-selected="false">Hosts</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade" id="Connect" role="tabpanel" aria-labelledby="Connect-tab">
+
+                {% if s_group %}
+                <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    {% for group in s_group %}
+                      <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{ group.id }}" aria-expanded="false" aria-controls="collapseOne">
+                      {{ group.name }}
+                      </button>
+                      </h2>
+                      </div>
+                        {% if group.owner != 0 %}
+                          <div id="collapse{{ group.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          {% for t_owner in group.owner %}
+                            <div class="card-body id{{ t_owner.id }}">
+                            {{ t_owner.name }}
+                            </div>
+                          {% endfor %}
+                          </div>
+                        {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+                {% else %}
+                  <label> none </label>
+                {% endif %}
+
+              </div>
+              <div class="tab-pane fade" id="Database" role="tabpanel" aria-labelledby="Database-tab">
+                2hhhrthrthffffffffffffffffffffffff.
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade {{ vpillsDatabase }}" id="v-pills-Database" role="tabpanel" aria-labelledby="v-pills-Database-tab">
+          <div class="row">
+            <div class="col-xl-6 col-lg-12 col-xm-6">
+            <form autocomplete="off" action="/set_database" method='post'>
+              <div class="form-group">
+                <label for="serverdb">Enter PostgreSQL address server</label>
+                <input {{ serverdb_atr }} type="text" name="serverdb" class="form-control {{ serverdb_val }}" id="serverdb" aria-describedby="emailHelp" placeholder="{{ serverdb }}" value="{{ serverdb_vol }}">
+                <small id="emailHelp" class="form-text text-muted">The database must be on PostgreSQL.</small>
+              </div>
+              <div class="form-group">
+                <label for="schemadb">Schema</label>
+                <input {{ schemadb_atr }} type="text" name="schemadb" class="form-control {{ schemadb_val }}" id="schemadb" placeholder="{{ schemadb }}" value="{{ schemadb_vol }}">
+              </div>
+              <div class="form-group">
+                <label for="userdb">User</label>
+                <input {{ userdb_atr }} type="text" name="userdb" class="form-control {{ userdb_val }}" id="userdb" placeholder="{{ userdb }}" value="{{ userdb_vol }}">
+              </div>
+              <div class="form-group">
+                <label for="passworddb">Password</label>
+                <input {{ passworddb_atr }} type="password" name="passworddb" class="form-control {{ passworddb_val }}" id="passworddb" placeholder="{{ passworddb }}" value="{{ passworddb_vol }}">
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-xm-6">
+                  <span>Status:
+                  <span class="badge {{ status_db_init }}">{{ status_db }}</span>
+                  </span>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-xm-6 text-right">
+                  <button type="submit" class="btn btn-primary">{{ button_db }}</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+          </div>
+          <div class="tab-pane fade {{ vpillsLDAP }}" id="v-pills-LDAP" role="tabpanel" aria-labelledby="v-pills-LDAP-tab">
+            <div class="row">
+            <div class="col-xl-6 col-lg-12 col-xm-6">
+            <form autocomplete="off" action="/set_ldap" method='post'>
+              <div class="form-group">
+                <label for="serverdb">Enter LDAP address server </label>
+                <input {{ ad_serverdb_atr }} type="text" name="ad_server" class="form-control {{ ad_serverdb_val }}" id="ad_serverdb" aria-describedby="emailHelp" placeholder="{{ ad_serverdb }}" value="{{ ad_serverdb_vol }}">
+              </div>
+              <div class="form-group">
+                <label for="schemadb">Base DN</label>
+                <input {{ ad_basedn_atr }} type="text" name="ad_basedn" class="form-control {{ ad_basedn_val }}" id="ad_basedn" placeholder="{{ ad_basedn }}" value="{{ ad_basedn_vol1 }}">
+                <small id="ad_basedn_s" class="form-text text-muted">A base dn is the point from where a server will search for users. example: dc=LOCALHOST,dc=LOC</small>
+              </div>
+              <div class="form-group">
+                <label for="schemadb">Admin group</label>
+                <input {{ ad_group1_atr }} type="text" name="ad_group1" class="form-control {{ ad_group1_val }}" id="ad_group1" placeholder="{{ ad_group1 }}" value="{{ ad_group_vol1 }}">
+                <small id="ad_group1_s" class="form-text text-muted">Specify the group that will have the highest priority. example: CN=Admin,OU=terminal_group,DC=LOCALHOST,DC=LOC</small>
+              </div>
+              <div class="form-group">
+                <label for="schemadb">User group</label>
+                <input {{ ad_group2_atr }} type="text" name="ad_group2" class="form-control {{ ad_group2_val }}" id="ad_group2" placeholder="{{ ad_group2 }}" value="{{ ad_group2_vol }}">
+                <small id="ad_group2_s" class="form-text text-muted">Specify the group to which normal access is granted. example: CN=User,OU=terminal_group,DC=LOCALHOST,DC=LOC</small>
+              </div>
+              <div class="form-group">
+                <label for="userdb">User</label>
+                <input {{ ad_userdb_atr }} type="text" name="userdb" class="form-control {{ ad_userdb_val }}" id="ad_user" placeholder="{{ ad_userdb }}" value="{{ ad_userdb_vol }}">
+              </div>
+              <div class="form-group">
+                <label for="passworddb">Password</label>
+                <input {{ ad_passworddb_atr }} type="password" name="passworddb" class="form-control {{ ad_passworddb_val }}" id="ad_password" placeholder="{{ ad_passworddb }}" value="{{ ad_passworddb_vol }}" autocomplete="new-password">
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-xm-6">
+                  <span>Status:
+                  <span class="badge {{ ad_status_db_init }}">{{ ad_status_db }}</span>
+                  </span>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-xm-6 text-right">
+                  <button type="submit" class="btn btn-primary">{{ ad_button_db }}</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+   <div class='cr'>ГРАН ©2019</div>
+</body>
+</html>

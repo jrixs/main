@@ -1,0 +1,3 @@
+SUBSYSTEM=="usb", ACTION=="add", ENV{DEVTYPE}=="usb_device", RUN+="/bin/bash -c '/opt/usbscanner_0.1/addcron.sh'"
+SUBSYSTEM=="usb", ACTION=="remove", ENV{DEVTYPE}=="usb_device", RUN+="/bin/bash -c '/opt/usbscanner_0.1/addcron.sh'"
+

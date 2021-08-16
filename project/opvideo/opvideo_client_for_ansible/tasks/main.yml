@@ -1,0 +1,58 @@
+---
+
+- name: python3-pymysql-install
+  become: yes
+  apt: 
+    name: python3-pymysql
+    state: latest 
+    update-cache: yes
+
+- name: сreate directory opvideo
+  become: yes
+  file: path=/opt/custom/opvideo state=directory
+
+- name: add file videos_client.py
+  become: yes
+  template:
+    src: videos_client.py
+    dest: /opt/custom/opvideo/videos_client.py
+    owner: root
+    group: root
+    mode: 0755
+
+- name: add file db.conf
+  become: yes
+  template:
+    src: db.conf
+    dest: /opt/custom/opvideo/
+    owner: root
+    group: root
+    mode: 0644
+
+- name: add file videos_db.py
+  become: yes
+  template:
+    src: videos_db.py
+    dest: /opt/custom/opvideo/lib/
+    owner: root
+    group: root
+    mode: 0644
+    
+- name: add file opvideo.service
+  become: yes
+  template:
+    src: opvideo.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: 0755
+
+- name: enable service opvideo
+  become: yes
+  systemd:
+    name: opvideo
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
+
+

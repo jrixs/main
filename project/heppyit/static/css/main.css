@@ -1,0 +1,26 @@
+*{margin:0;padding:0;font-family:'arial';font-size:16px;}
+html,body{background-color:#000;}
+.mbody{margin:1%;}
+.work_title{position: absolute;text-align: center;width: 100%;top: 15%;}
+.work_title p{font-size: 130px;color: #03f4a124;font-family: inherit;font-weight: 600;cursor: default; font-style: italic;}
+.menu_zone{position: fixed;border-top: 2px solid #ddd;border-left: 2px solid #ddd;padding:10px;border-right: 3px solid #ddd;border-bottom: 3px solid #ddd;text-align:left;background-color:#eee;font-size:12px;}
+.work_zone{text-align:center;position: absolute;width: 25%;top: 40%;left: 37%;}
+.work_zone>*{color:#0d9a00;}
+.work_zone>h1{text-align:center;text-transform:uppercase;margin-bottom:50px;font-size:24px;}
+.work_zone input[type=submit]{padding:12px;background-color:#0d8a98;color:white;border:none;border-radius:5px;cursor:pointer;width: 95%;}
+.work_zone input[type=submit]:hover{background-color:#09636d;}
+.work_zone input[type=text]{margin: 0;padding: 0;font-family: 'arial';font-size: 16px;position: relative;border: 1px solid #0d8a98;color: #0d8a98;background-color: #000;border-radius: 5px;padding: 10px;display: inline-block;margin-bottom: 30px;width: 90%;cursor: auto;}
+.work_zone input[type=password]{margin: 0;padding: 0;font-family: 'arial';font-size: 16px;position: relative;border: 1px solid #0d8a98;color: #0d8a98;background-color: #000;border-radius: 5px;padding: 10px;display: inline-block;margin-bottom: 30px;width: 90%;cursor: auto;}
+.uploader{cursor:pointer;position:relative;border:1px solid #f49237;color:#999;background-color:white;border-radius:5px;padding:10px;display:inline-block;margin-bottom:30px;width:90%;}
+.uploader:hover{background-color:#f49237;color:white;}
+#fc{cursor:pointer;}
+.uploader>input[type=file]{position:absolute;left:0;top:0;bottom:0;right:0;opacity:0;cursor:pointer;display:block;}
+.uploader_stat{text-align:left;}
+.but{display:inline-block;padding:4px;font-size:12px;background-color:#ffbf00;border:3px solid #ffbf00;cursor:pointer;color:black;border-radius:5px;text-decoration:none;}
+.but:hover{background-color:#ffe000;border:3px solid #ffe000;}
+.butred:hover{background-color:#ff0000;border:3px solid #ff0000;color:#ffe000;}
+.error{margin:30px auto;width:400px;font-size:22px;border-radius:10px;padding:30px;color:#f00;text-align:center;font-weight:bold;}
+.cr{font-size:12px;color:#10e2fa;text-align:center;position: absolute;width: 100%;top: 95%;cursor: default;}
+@media screen and (max-width: 768px)  {.work_zone {width: 75%;left: 10%;} .work_zone input[type=text]{font-size: 60px; padding-left: 20px;} .work_zone input[type=password]{font-size: 60px; padding-left: 20px;} .work_zone input {font-size: 60px;} .error{font-size: 60px;} .work_title p {font-size: 200px;}.cr {font-size: 30px;}}
+@media screen and (max-width: 1024px) {.work_zone {width: 80%;left: 10%;} .work_zone input[type=text]{font-size: 60px;padding-left: 20px;} .work_zone input[type=password]{font-size: 60px; padding-left: 20px;} .work_zone input {font-size: 60px;} .error{font-size: 60px;} .work_title p {font-size: 200px;} .cr {font-size: 30px;}}
+@media screen and (min-width: 1280px) {body {font-size: 400px;}}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск видео</title>
+	<style>
+		*{margin:0;padding:0;font-family:'arial';font-size:16px;}
+		html,body{background-color:#eee;}
+		.menu_zone{position: fixed;border-top: 2px solid #ddd;border-left: 2px solid #ddd;padding:10px;border-right: 3px solid #ddd;border-bottom: 3px solid #ddd;text-align:left;background-color:#eee;font-size:12px;}
+		.work_zone{margin:100px auto;width:80%;border-top: 1px solid #ddd;border-left: 1px solid #ddd;padding:50px;border-right: 2px solid #ddd;border-bottom: 2px solid #ddd;text-align:center;background-color:white;}
+		.work_zone>*{color:#f49237;}
+		.work_zone>h1{text-align:center;text-transform:uppercase;margin-bottom:50px;font-size:44px;}
+		.work_zone input[type=submit]{padding:11px 30px;background-color:#f49237;color:white;border:none;border-radius: 0px 5px 5px 0px;cursor:pointer;margin-left: -6px;}
+		.work_zone input[type=text]{margin: 0;font-family: 'arial';font-size: 16px;cursor: pointer;position: relative;border: 1px solid #f49237;color: #999;background-color: white;border-radius: 5px 0px 0px 5px;padding: 10px;display: inline-block;margin-bottom: 30px;width: 65%;outline: none; cursor: text;}
+		.uploader{cursor:pointer;position:relative;border:1px solid #f49237;color:#999;background-color:white;border-radius:5px;padding:10px;display:inline-block;margin-bottom:30px;width:90%;}
+		.uploader:hover{background-color:#f49237;color:white;}
+		#fc{cursor:pointer;}
+		.uploader>input[type=file]{position:absolute;left:0;top:0;bottom:0;right:0;opacity:0;cursor:pointer;display:block;}
+		.uploader_stat{text-align:left;}
+		.but{display:inline-block;padding:4px;font-size:12px;background-color:#ffbf00;border:3px solid #ffbf00;cursor:pointer;color:black;border-radius:5px;text-decoration:none;}
+		.but:hover{background-color:#ffe000;border:3px solid #ffe000;}
+		.butred:hover{background-color:#ff0000;border:3px solid #ff0000;color:#ffe000;}        
+		.error{margin: 0px auto;width: 50%;font-size: 22px;border-radius: 10px;padding: 12px;color: #f00;text-align: center;font-weight: bold;}
+        .cr{font-size:12px;color:#888;text-align:center;}
+        .dev_video{margin-top: 50px;}
+        .dev_video video {width: 100%;border-radius: 10px;border: 0px solid;}
+        .dev_video a p {padding: 11px 30px;background-color: #f49237;color: white;border: 0px solid;border-radius: 0px 0px 10px 10px;cursor: pointer;margin: -7px 0px;margin-bottom: 20px;}
+		.dev_video label {display: block;font-size: 16px;text-align: left;padding: 3px 10px;font-weight: bold;}
+		.dev_video hr {width: 98%; left: 1%; position: relative; margin: 10px 0px;}
+	</style>
+</head>
+<body>
+   <div class="work_zone">
+     <form method='post'>
+       	<h1>Поиск видео</h1>
+       	<p>(поиск по наусс)</p>
+       	<div class='error'>{{ error }}</div>
+       	<input type="text" name="naus" autocomplete="off">
+       	<input type="submit" value="Найти">
+       	<br>
+     </form>
+     <div class="dev_video">
+     	{% for video in videos %}
+     	<hr align="center" size="2" color="#f49237">
+     	<label>Имя файла: {{ video.file_name }}</label>
+     	<label>Дата записи: {{ video.recording_date }}</label>
+     	<label>Длительность хранения : {{ video.storage_days }} дней</label>
+ 	    {% if video.delete_date %}
+	    <label>Видео удалено : {{ video.delete_date }} </label>
+	    {% else %}
+	    <video controls="" controlslist="download">
+		<source src={{ video.url }} type="video/mp4">
+		</video>
+		<!--a href={{ video.url }} download="" title="Нажмите чтобы скачать видео файл."><p>Скачать</p></a-->
+	    {% endif %}
+     	{% endfor %}
+	 </div>
+   </div>
+   <div class='cr'>©2019</div>
+</body>
+</html>

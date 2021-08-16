@@ -1,0 +1,11 @@
+[Unit]
+Description=opvideo
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /opt/custom/opvideo/videos_client.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

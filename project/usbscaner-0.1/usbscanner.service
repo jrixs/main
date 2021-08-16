@@ -1,0 +1,10 @@
+[Unit]
+Description=usbscanner
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/opt/usbscanner_0.1/usbscanner.py
+
+[Install]
+WantedBy=multi-user.target

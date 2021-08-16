@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HappyIT</title>
+	<link rel="icon" href="https://yt3.ggpht.com/ytc/AAUvwng8blqjf-bH0fGxKcdOtYjkOiPPmKXpqowZ2evV5A=s900-c-k-c0x00ffffff-no-rj">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<style>
+	.my_batton {font-size: 3rem;}
+	</style>
+    <script>
+    function show(){
+      $.ajax({
+        url: '/test',
+        success: function(data) {
+          $('.results').html(data);
+          }
+      });
+    }
+    $(document).ready(function(){
+      show();
+      setInterval('show()',60000);
+    });
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler my_batton" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand" href="#">HappyIT</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="\home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="\connect">connect</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="\setings">setings</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="results">Ждем ответа</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!--div class="work_zone">
+     <form method='post'>
+       	<h1>Поиск видео</h1>
+       	<p>(поиск по наусс)</p>
+       	<div class='error'>{{ error }}</div>
+       	<input type="text" name="naus">
+       	<input type="submit" value="Найти">
+       	<br>
+     </form>
+     <div class="dev_video">
+     	{% for video in videos %}
+     	<label>Имя файла: {{ video.file_name }}</label>
+     	<label>Дата записи: {{ video.recording_date }}</label>
+     	<label>Длительность хранения : {{ video.storage_days }} дней</label>
+ 	    {% if video.delete_date %}
+	    <label>Видео удалено : {{ video.delete_date }} </label>
+	    {% else %}
+	    <video controls="" controlslist="nodownload">
+		<source src={{ video.url }} type="video/mp4">
+		</video>
+		<a href={{ video.url }} download="" title="Нажмите чтобы скачать видео файл."><p>Скачать</p></a>
+	    {% endif %}
+     	{% endfor %}
+	 </div>
+   </div-->
+   <div class='cr'>ГРАН ©2019</div>
+</body>
+</html>
