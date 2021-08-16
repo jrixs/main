@@ -225,6 +225,6 @@ SET  ZONE = 'zone-test',
           PATH_SRC = '/home/oper/.videos/',
           PATH_DST = 'путь к каталогу на сервере куда будут складываться видео>',
           TYPE_VIDEOFILE = 'mp4',
-          PUBLIC_ADDRESS = 'docker5.zone-test.grancall.ru',
+          PUBLIC_ADDRESS = 'docker5.zone-test.domain.ru',
           PUBLIC_PORT = 88;
 ```
